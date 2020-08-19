@@ -115,9 +115,8 @@ int think(void)
     if (stack[n-1].flag!=F_NORMAL) break;
 	fifty++;
 	if (fifty>=100) return FIFTY_MOVE;
-    if (hash_stack[stack_size]==hash_stack[n] || 
-		hash_stack[stack_size-1]==hash_stack[n]) {
-		for (k=j-1;k>=0;k--) {
+    if (hash_stack[stack_size]==hash_stack[n]) {
+		for (k=n-1;k>=0;k--) {
 			if (hash_stack[n]==hash_stack[k]) return THREE_POS;
 		}
 	}

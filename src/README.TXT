@@ -1,4 +1,4 @@
-OliThink, Version 3.0.6
+OliThink, Version 3.0.7
    (c) 2003 Oliver Brausch, ob112@web.de
 
 OliThink is a medium-high strength chess programm, with an ELO

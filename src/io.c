@@ -203,7 +203,7 @@ int input_move(void)
 
   if (!strncmp(buf,"xboard",5))
   { 
-	   printf("feature myname=\"OliThink 3.0.6\" done=1\n"); 
+	   printf("feature myname=\"OliThink 3.0.7\" done=1\n"); 
 	   fflush(stdout); 
   }
 

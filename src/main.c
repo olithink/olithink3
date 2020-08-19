@@ -1,4 +1,4 @@
-/* OliThink Version 3.0.6 (c) Oliver Brausch, 15. Juli. 2003
+/* OliThink Version 3.0.7 (c) Oliver Brausch, 15. Juli. 2003
 //
 // ob112@web.de
 */
@@ -164,5 +164,4 @@ void game_ends(int w)
      printf("Drawn by repitition!\n");
   }
   fflush(stdout);
-  machine_color=C_NONE;
 }
