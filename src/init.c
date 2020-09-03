@@ -4,6 +4,7 @@ void init_pos()
 {
   int i;
 
+  stack_size=0;
   memset(castle,0,sizeof(castle));
 
   for (i=0;i<64;i++)
@@ -23,6 +24,8 @@ void init_pos()
   memset(killer,0,sizeof(killer));
   memset(pv,0,sizeof(pv));
   memset(pv_length,0,sizeof(pv_length));
+  memset(stack,0,sizeof(stack));
+  end_game=check_for_endgame();
   display_board();
 }
 
@@ -164,13 +167,13 @@ int parse_args(int argc, char **argv)
     if (!strncmp(argv[i],"-h",2))
     {
        if (++i<argc)
-         sscanf(argv[i],"%d",&mb_hash);
+         sscanf(argv[i],"%ld",&mb_hash);
        if (mb_hash<1) mb_hash=1;
     }
     if (!strncmp(argv[i],"-H",2))
     {
        if (++i<argc)
-         sscanf(argv[i],"%d",&mb_hash);
+         sscanf(argv[i],"%ld",&mb_hash);
        if (mb_hash<1) mb_hash=1;
        mb_hash*=1024*1024;
     }                                                                         

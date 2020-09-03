@@ -7,6 +7,73 @@
 #define QUEEN_FIELD 1
 #define KING_FIELD 1
 
+void init_eval(int r)
+{ 
+  int i;
+  for (i=0;i<64;i++)
+  {
+    move_black[i]=move_black_init[i];
+    move_white[i]=move_white_init[i];
+  }
+    
+  if (r<0) return;
+  while(r--)
+  {
+    i=rand()%64;
+    move_white[i]++;
+    move_black[i%8+8*(7-(int)(i/8))]++;
+  }
+}
+
+int check_for_endgame(void)
+{
+  int i,p=0;
+  int bnw=1,bnb=1,retv=1;
+
+   for (i=0;i<64;i++)
+   {
+    if (abs(board[i]==W_PAWN)) {bnw=0;bnb=0;}
+    if (board[i]>W_PAWN && board[i]<W_KING)
+      p+=piece_value[board[i]]; 
+   }
+   
+   if (bnw==1 && bnb==1) retv=2;
+    
+   if (p>V_QUEEN) return 0;
+
+   if (p!=V_KNIGHT+V_BISHOP) bnw=0;
+   if (p) bnb=0;
+
+   p=0;
+   for (i=0;i<64;i++)
+    if (board[i]<B_PAWN && board[i]>B_KING)
+      p-=piece_value[board[i]]; 
+
+   if (p>V_QUEEN) return 0;
+
+   if (p!=V_KNIGHT+V_BISHOP) bnb=0;
+   if (p) bnw=0;
+
+   if (bnw || bnb) 
+   { 
+     for (i=0;i<64;i++)
+       if (abs(board[i]==W_BISHOP)) break;
+
+     if ((i%2)==0) bnw=+4;
+     else bnw=-4;
+
+     if (end_game!=3)
+     for (i=0;i<12;i++)
+     {
+       move_endgame[bnkk_add[i]]+=bnw;   
+       move_endgame[bnkk_sub[i]]-=bnw;   
+     }
+     return 3;
+   }
+
+   return retv;
+}
+
 inline void add_fields(int *num,int i,int n,int pc)
 {
   int j,c;
@@ -194,6 +261,12 @@ int eval(void)
   {
     atw+=move_white[i]*numw[i]; 
     atb+=move_black[i]*numb[i];
+  }
+
+  if (end_game)
+  {
+    atw+=5*end_game*end_game*move_endgame[king_pos[C_WHITE]];
+    atb+=5*end_game*end_game*move_endgame[king_pos[C_BLACK]];
   }
 
   w=(w_m-b_m);

@@ -201,6 +201,12 @@ int input_move(void)
     sscanf(buf+5,"%d",&op_time);
   }
 
+  if (!strncmp(buf,"xboard",5))
+  { 
+	   printf("feature done=1\n"); 
+	   fflush(stdout); 
+  }
+
   if (!strncmp(buf,"name",4))
   { 
     sscanf(buf+5,"%s",oponnent_name);
@@ -277,12 +283,12 @@ void editboard(void)
        in_book=0;
        return; 
     }
-    if (s[0]=='P') piece=W_PAWN*set_color;
-    if (s[0]=='B') piece=W_BISHOP*set_color;
-    if (s[0]=='N') piece=W_KNIGHT*set_color;
-    if (s[0]=='R') piece=W_ROOK*set_color;
-    if (s[0]=='Q') piece=W_QUEEN*set_color;
-    if (s[0]=='K') piece=W_KING*set_color;
+    if (s[0]=='P'||s[0]=='p') piece=W_PAWN*set_color;
+    if (s[0]=='B'||s[0]=='b') piece=W_BISHOP*set_color;
+    if (s[0]=='N'||s[0]=='n') piece=W_KNIGHT*set_color;
+    if (s[0]=='R'||s[0]=='r') piece=W_ROOK*set_color;
+    if (s[0]=='Q'||s[0]=='q') piece=W_QUEEN*set_color;
+    if (s[0]=='K'||s[0]=='k') piece=W_KING*set_color;
     if (piece)
       board[(s[1]-'a')+(s[2]-'1')*8]=piece;
   }

@@ -1,4 +1,4 @@
-/* OliThink Version 3.0.1 (c) Oliver Brausch, 01. Mar. 2001
+/* OliThink Version 3.0.6 (c) Oliver Brausch, 15. Juli. 2003
 //
 // ob112@web.de
 */
@@ -155,13 +155,13 @@ void game_ends(int w)
   }
   if (w==FIFTY_MOVE)
   { 
-     if (ics_mode) printf("draw\n");
-     if (!ics_mode) printf("Drawn by 50 moves rule!\n");
+     printf("draw\n");
+     printf("Drawn by 50 moves rule!\n");
   }
   if (w==THREE_POS)
   { 
-     if (ics_mode) printf("draw\n");
-     if (!ics_mode) printf("Drawn by repitition!\n");
+     printf("draw\n");
+     printf("Drawn by repitition!\n");
   }
   fflush(stdout);
   machine_color=C_NONE;

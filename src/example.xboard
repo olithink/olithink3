@@ -1,0 +1,1 @@
+xboard -ics -icshost localhost -fcp "./olithink" -zp -xreuse -autoflag -getMoveList true

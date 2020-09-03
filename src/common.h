@@ -50,7 +50,7 @@ typedef long long vlong;
 
 #define V_EMPTY		0
 #define V_PAWN 		100
-#define V_KNIGHT 	325
+#define V_KNIGHT 	324
 #define V_BISHOP 	325
 #define V_ROOK 		480
 #define V_QUEEN 	950
@@ -196,10 +196,10 @@ extern int high_fail;
 extern int high_new;
 extern int init_time;
 extern int opening_flag[MAX_BOOK];
-extern long random_hash_index_init[B_DIM][14];
-extern long random_hash_ep[10];
-extern long random_hash_castle[16];
-extern long *random_hash_index[B_DIM];
+extern vlong random_hash_index_init[B_DIM][14];
+extern vlong random_hash_ep[10];
+extern vlong random_hash_castle[16];
+extern vlong *random_hash_index[B_DIM];
 extern long history[B_DIM][B_DIM];
 extern long nodes;
 extern long start_time;
@@ -216,7 +216,7 @@ extern int hash_mask;
 extern int have_kibitzed;
 extern int do_ponder;
 extern int pondering;
-extern int mb_hash;
+extern nlong mb_hash;
 extern int king_pos[2];
 extern int interface;
 extern int piece_value_init[13];
@@ -229,6 +229,7 @@ extern int ics_mode;
 extern int op_time;
 extern int my_time;
 extern int ab_window;
+extern int end_game;
 
 extern int init_chess(void);
 extern int parse_args(int,char **);
@@ -252,6 +253,8 @@ extern int parse_move(char*,Moves*);
 extern int pgn_string(char*,Moves);
 extern int e2e4_string(char*,Moves);
 extern int think(void);
+extern int check_for_endgame(void);
+extern void init_eval(int);
 extern int exit_chess(int);
 extern int attacked(int,int);
 extern void update_pv(Moves,int);

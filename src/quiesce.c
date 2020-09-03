@@ -6,6 +6,7 @@ int quiesce(int alpha,int beta)
   nodes++;
   pv_length[ply]=ply;
 
+
   c=attacked(king_pos[on_move],on_move);       
   if (c)
   {

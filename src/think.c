@@ -2,7 +2,7 @@
 
 int think(void)
 {
-  int i,j,w,number;
+  int i,j,k,n,fifty,w,number;
   int alpha=-30000;
   int beta=30000;
   int mate_in=0;
@@ -12,6 +12,9 @@ int think(void)
   ply=0;
   nodes=0;
   rest_nodes=CHECK_NODES;
+
+  init_eval(random_move);
+  end_game=check_for_endgame();
 
   for (i=0;i<hash_mask;i++)
   {
@@ -101,7 +104,26 @@ int think(void)
     i=0;
   }
 
-  if (!execute_move(i)) return 0;
+  alpha=execute_move(i);
+
+  fifty=0;
+
+  if (stack_size>1)
+  for (n=stack_size-2;n>=0;n--)
+  {
+    if (stack[n].flag!=F_NORMAL) break;
+    if (stack[n-1].flag!=F_NORMAL) break;
+	fifty++;
+	if (fifty>=100) return FIFTY_MOVE;
+    if (hash_stack[stack_size]==hash_stack[n] || 
+		hash_stack[stack_size-1]==hash_stack[n]) {
+		for (k=j-1;k>=0;k--) {
+			if (hash_stack[n]==hash_stack[k]) return THREE_POS;
+		}
+	}
+  }     
+
+  if (!alpha) return 0;
 
   if (mate_in && do_kibitz && !have_kibitzed)
   {

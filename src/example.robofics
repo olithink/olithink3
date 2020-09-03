@@ -1,0 +1,1 @@
+robofics -ficsHost localhost -program "./olithink" -craftyMode on -haveCmdType on -sendGameEnd on

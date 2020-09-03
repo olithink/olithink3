@@ -10,7 +10,7 @@ B_ROOK ,B_KNIGHT ,B_BISHOP ,B_QUEEN ,B_KING ,B_BISHOP ,B_KNIGHT ,B_ROOK
 };
 
 #ifdef WIN32
-#include <sys\timeb.h>
+#include <sys/timeb.h>
 struct timeb tv;
 #else
 #include <sys/time.h>
@@ -46,10 +46,10 @@ vlong hash_stack_init[MAX_STACK+1];
 Moves *stack;
 Moves stack_init[MAX_STACK+2];
 Castle_Class castle[MAX_STACK];
-long random_hash_index_init[B_DIM][14];
-long *random_hash_index[B_DIM];
-long random_hash_ep[10];
-long random_hash_castle[16];
+vlong random_hash_index_init[B_DIM][14];
+vlong *random_hash_index[B_DIM];
+vlong random_hash_ep[10];
+vlong random_hash_castle[16];
 long nodes;
 long start_time;
 long rest_nodes;
@@ -81,6 +81,7 @@ int inc_time;
 int init_time;
 int low_fail;
 int ab_window;
+int end_game;
 int high_fail;
 int high_new;
 int hash_mask;
@@ -88,7 +89,7 @@ int hashold_mask;
 int have_kibitzed;
 int do_ponder;
 int pondering;
-int mb_hash;
+nlong mb_hash;
 int king_pos[2];
 int interface=INTERFACE;
 int no_captures;
