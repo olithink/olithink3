@@ -201,6 +201,12 @@ int input_move(void)
     sscanf(buf+5,"%d",&op_time);
   }
 
+  if (!strncmp(buf,"xboard",5))
+  {
+           printf("feature myname=\"OliThink 3.0.1\" done=1\n");
+           fflush(stdout);
+  }
+
   if (!strncmp(buf,"name",4))
   { 
     sscanf(buf+5,"%s",oponnent_name);
