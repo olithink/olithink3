@@ -164,5 +164,4 @@ void game_ends(int w)
      if (!ics_mode) printf("Drawn by repitition!\n");
   }
   fflush(stdout);
-  machine_color=C_NONE;
 }
